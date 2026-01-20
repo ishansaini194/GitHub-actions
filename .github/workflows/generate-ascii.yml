@@ -10,6 +10,8 @@ jobs:
 
         - name: List repo files
           run: ls -ltra
-          
+
         - name: Install cosway Peogram
-          run: ./ascii-script.sh
+          run: |
+            chmod +x ascii-script.shs
+            ./ascii-script.sh
