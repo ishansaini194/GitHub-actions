@@ -1,17 +1,34 @@
 name: Generate Ascii Artwork
-on:
-    push
+on: push
+
 jobs:
-    ascii-job:
-        runs-on: ubuntu-latest
-        steps:
-        - name: checkout repo
-          uses: actions/checkout@v4
+   build_job_1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Cowsay Program
+      run: sudo apt-get install cowsay -y
 
-        - name: List repo files
-          run: ls -ltra
+    - name: Execute Cowsay cmd
+      run: cowsay -f dragon "Run for cover...dragon" >> dragon.txt
+        
+    - name: sleep for 30 seconds
+      run: sleep 30
 
-        - name: Install cosway Peogram
-          run: |
-            chmod +x ascii-script.sh
-            ./ascii-script.sh
+   test_job_1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Sleep for 10 second
+      run: sleep 10
+
+    - name: Test files Exist
+      run: grep -i "dragon" dragon.txt
+
+   deploy_job_3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read File
+        run: cat dragon.txt
+    
+      - name: Deploy
+        run: echo Deploying.....
+      
